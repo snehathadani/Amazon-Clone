@@ -107,3 +107,7 @@ img.medium{
   color: #f0c04f;
   margin: 00.1rem;
 }
+
+.rating span:last-child {
+  color: #404040;
+}
