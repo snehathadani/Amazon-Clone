@@ -8,7 +8,7 @@ export default function ProductScreen(props) {
         return <div> Product Not Found</div>;
     }
     return (
-        <div className ="row">
+        <div className ="row top">
             <div className ="col-2" >
                 <img className ="large" src ={product.image} alt ={product.name} />
             </div>

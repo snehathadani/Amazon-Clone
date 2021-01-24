@@ -74,6 +74,9 @@ a.brand{
 .row.center{
   justify-content: center;
 }
+.row.top{
+  align-items:flex-start;
+}
 
 /**************** Section Image*************************/
 img{
