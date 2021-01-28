@@ -1,10 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Product from '../components/Product';
 import Rating from '../components/Rating';
 import data from '../data';
 export default function ProductScreen(props) {
-    const product = data.products.find(element=> element._id === props.match.params.id) 
+   // const product = data.products.find(element=> element._id === props.match.params.id) no need for this line as we will get product details from redux store
+
+   const productDetails = useSelector(state => state.productDetails)
     if(!product) {
         return <div> Product Not Found</div>;
     }

@@ -23,7 +23,7 @@ export const productDetailsReducer = (state = {product: {}, loading:true}, actio
         case PRODUCT_DETAILS_SUCCESS :
             return {loading:false, product:action.payload};
         case PRODUCT_DETAILS_FAIL :
-            RETURN {loading:false, error: action.payload}
+            return {loading:false, error: action.payload}
             default:
                 return state
     }
