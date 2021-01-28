@@ -3,15 +3,22 @@ import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Product from '../components/Product';
 import Rating from '../components/Rating';
-import data from '../data';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+
 export default function ProductScreen(props) {
    // const product = data.products.find(element=> element._id === props.match.params.id) no need for this line as we will get product details from redux store
 
    const productDetails = useSelector(state => state.productDetails)
-    if(!product) {
-        return <div> Product Not Found</div>;
-    }
+   const{ loading, error, product } = productDetails;
+  
     return (
+        <div>
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
         <div>
         <Link>Back to result</Link>
         <div className ="row top">
@@ -61,5 +68,8 @@ export default function ProductScreen(props) {
             </div>
         </div>
         </div>
+      )}
+       </div>
+        
     )
 }
