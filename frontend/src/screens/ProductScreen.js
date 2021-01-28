@@ -1,17 +1,24 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import Product from '../components/Product';
 import Rating from '../components/Rating';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { detailsProduct } from '../actions/productActions';
 
 export default function ProductScreen(props) {
+    const dispatch = useDispatch();
+    const productId = props.match.params.id;
    // const product = data.products.find(element=> element._id === props.match.params.id) no need for this line as we will get product details from redux store
 
    const productDetails = useSelector(state => state.productDetails)
    const{ loading, error, product } = productDetails;
   
+useEffect(()=> {
+    dispatch(detailsProduct(productId))
+}, [dispatch, productId])
+
     return (
         <div>
       {loading ? (
