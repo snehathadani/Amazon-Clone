@@ -19,7 +19,7 @@ const dispatch = useDispatch()
     dispatch(listProducts())
     
   }, [])
-    return (
+    return ( 
       <div>
       {loading ? (
         <LoadingBox></LoadingBox>
