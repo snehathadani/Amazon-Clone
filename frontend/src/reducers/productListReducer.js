@@ -1,7 +1,7 @@
 import { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstants";
 //set default state to set products to an empty array. The state shouldnt be null
 
-export const productListReducer= (state = {products: []},action) => {
+export const productListReducer= (state = { loading:true, products: []},action) => {
     switch(action.type){
         case PRODUCT_LIST_REQUEST:
             return {loading: true};
