@@ -21,7 +21,7 @@ useEffect(()=> {
 
 //redirect user to cart screen
 const addtoCartHandler = ()=> {
-    props.history.push(`/cart/${productId}?qty={qty}`)
+    props.history.push(`/cart/${productId}?qty=${qty}`)
 }
     return (
         <div>
