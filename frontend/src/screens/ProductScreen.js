@@ -31,7 +31,7 @@ const addtoCartHandler = ()=> {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
-        <Link>Back to result</Link>
+        <Link to ="/">Back to result</Link>
         <div className ="row top">
             <div className ="col-2" >
                 <img className ="large" src ={product.image} alt ={product.name} />
