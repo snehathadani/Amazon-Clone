@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {addToCart} from '../actions/cartActions';
+import MessageBox from '../components/MessageBox';
 // if productId from params.id exists then call addToCart action to add this product to the cart
 export default function CartScreen(props) {
+    //get a cart from redux store
+    const cart = useSelector(state=> state.cart)
+    const {cartItems} = cart;
     const dispatch = useDispatch();
     const productId = props.match.params.id;
     //get qty from url if the props.location.search value doesnt exists make it 1
@@ -14,10 +19,73 @@ export default function CartScreen(props) {
             dispatch(addToCart(productId, qty));
         }
     }, [dispatch,productId, qty])
+    const removeFromCartHandler = (id)=> {}
+    const checkoutHandler = ()=> {
+        props.history.push('/signin?redirect=shipping')//user should be redirected to shipping
+    }
+    //the div contains two columns and all columns should stick to top
+   
     return (
-        <div>
-            <h1> Cart Screen </h1>
-            <p>ADD TO CART : ProductID:{productId} QTY: {qty}</p>
+        <div className = "row top">
+           <div className = "col-2">
+               <h1>Shopping Cart</h1>
+               {cartItems.length === 0 ? <MessageBox>
+                   Cart is Empty. <Link to ="/" > Go Shopping </Link>
+               </MessageBox>
+               :
+               (
+                   <ul>
+                       {
+                           cartItems.map(item => (
+                               <li key = {item.product}>
+                                   <div className = "row">
+                                       <div>
+                                           <img src = {item.image} alt = {item.name} className = "small"></img>
+                                       </div>
+                                       <div className = "min-30">
+                                           <Link to ={`/product/${item.product}`}>{item.name}</Link>
+                                       </div>
+                                       <div>
+                                           <select value ={item.qty} onChange={e=> dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                           {[...Array(item.countInStock).keys()].map(x => (
+                                                            <option key ={x+1} value = {x+1}> {x+1} </option>
+                                                        ))
+                                                    }
+                                           </select>
+                                       </div>
+                                       <div>${item.price}</div>
+                                       <div>
+                                           <button type="button" onClick={()=> removeFromCartHandler(item.product)} >
+                                               Delete
+                                           </button>
+                                       </div>
+                                   </div>
+                               </li>
+                           ))
+                       }
+                   </ul>
+               )}
+           </div>
+           {console.log("here+++++++++++++++++++++++++")}
+           <div className="col-1" >
+               <div className="card card-body">
+                   <ul>
+                       <li>
+                           <h2>
+                               Subtotal ({cartItems.reduce((a,c) =>{  
+                                   console.log(c);
+                                   return a + c.qty
+                                   }, 0)} items): ${cartItems.reduce((a,c) => a + c.price * c.qty, 0)}
+                           </h2>
+                       </li>
+                       <li>
+                           <button type ="button" onClick =  {checkoutHandler} className="primary block" disabled ={cartItems.length === 0}>
+                               Proceed to Checkout
+                           </button>
+                       </li>
+                   </ul>
+               </div>
+           </div>
         </div>
     )
 }

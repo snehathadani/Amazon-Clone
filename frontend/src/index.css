@@ -129,9 +129,16 @@ a.brand{
 .col-2{
   flex: 2 1 50rem; /*occupy 2 of 4, make it shrinkable, make a width of the col */
 }
+.min-30 {
+  min-width:30rem;
+}
 /**************** Section Image*************************/
 img{
   border-radius: 0.5rem;
+}
+img.small{
+  max-width: 5rem;
+  width:100%;
 }
 img.medium{
   max-width: 29rem;
