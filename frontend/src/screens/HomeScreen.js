@@ -3,7 +3,7 @@ import Product from '../components/Product'
 //import axios from 'axios';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { productListReducer } from '../reducers/productListReducer';
+//import { productListReducer } from '../reducers/productListReducer';
 import { listProducts } from '../actions/productActions';
 import {useSelector, useDispatch} from 'react-redux';
 

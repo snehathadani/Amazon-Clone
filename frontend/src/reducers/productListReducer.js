@@ -16,7 +16,7 @@ export const productListReducer= (state = { loading:true, products: []},action) 
     }
 }
 
-export const productDetailsReducer = (state = { loading: false, product: {}}, action)=> {
+export const productDetailsReducer = (state = { loading: true, product: {}}, action)=> {
     switch(action.type){
         case PRODUCT_DETAILS_REQUEST :
             return {loading:true};
