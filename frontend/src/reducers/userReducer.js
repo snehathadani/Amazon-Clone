@@ -1,4 +1,4 @@
-import { USER_SIGNIN_FAIL, USER_SIGNIN_SIGNOUT, USER_SIGNIN_SUCCESS } from "../constants/userConstants";
+import { USER_SIGNIN_FAIL, USER_SIGNOUT, USER_SIGNIN_SUCCESS, USER_SIGNIN_REQUEST } from "../constants/userConstants";
 
 export const userSigninReducer = (state={}, action)=> {
     switch(action.type){
