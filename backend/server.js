@@ -1,13 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import data from './data.js';
 import userRouter from './routers/userRouter.js';
 import dotenv from 'dotenv'
+import productRouter from './routers/productRouter.js';
 
 dotenv.config();
 
 const app = express();
-
+//parse the body of http request as postman is giving error on POST with email and password can't read properety email of undefined
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 //connect with mongoDb database with .env
     mongoose.connect('mongodb://localhost:27017/amazon-clone?authSource=admin', {
     useNewUrlParser:true,
@@ -16,7 +18,7 @@ const app = express();
     user: process.env.DB_USER,
     pass: process.env.DB_PASS
 });
-
+/*
 app.get('/api/products/:id', (req,res) => {
     const product = data.products.find((x) => x._id === req.params.id);
     if(product){
@@ -29,6 +31,8 @@ app.get('/api/products/:id', (req,res) => {
 app.get('/api/products', (req, res) => {
     res.send(data.products);
 })
+*/
+app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.get('/', (req,res)=> {
     res.send('Server is ready.');

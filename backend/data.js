@@ -16,7 +16,7 @@ const data = {
 
     products : [
         {
-            _id: '1',
+           
             name: 'Black Tee',
             category: 'Shirts',
             image: '/images/image1.jpg',
@@ -28,7 +28,7 @@ const data = {
             description: 'high quality product',
         },
         {
-            _id: '2',
+            
             name: 'Womens Tshirt',
             category: 'Shirts',
             image: '/images/image2.jpg',
@@ -40,7 +40,7 @@ const data = {
             description: 'high quality product',
         },
         {
-            _id: '3',
+           
             name: 'Slim Shirt',
             category: 'Shirts',
             image: '/images/image3.jpg',
@@ -52,7 +52,7 @@ const data = {
             description: 'high quality product',
         },
         {
-            _id: '4',
+          
             name: 'plain Shirt',
             category: 'Shirts',
             image: '/images/image4.jpg',
@@ -64,7 +64,7 @@ const data = {
             description: 'high quality product',
         },
         {
-            _id: '5',
+         
             name: ' Slim Shirt',
             category: 'Shirts',
             image: '/images/image5.jpg',
