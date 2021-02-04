@@ -9,7 +9,7 @@ export const userSigninReducer = (state={}, action)=> {
         case USER_SIGNIN_FAIL:
             return {loading:false, error: action.payload};
         case USER_SIGNOUT:
-            return {};
+            return {};// by setting an empty object iserInfo from localStorage should be removed
             default:
                 return state;
     }

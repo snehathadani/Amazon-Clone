@@ -10,6 +10,8 @@ function App() {
   //add a badge to show number of items in the cart, for that get access to cart items from redux
   const cart = useSelector(state=> state.cart);
   const {cartItems} = cart;
+  const userSignin = useSelector((state)=>state.userSignin);
+  const {userInfo} = userSignin;
   return (
     <BrowserRouter>
     <div className = "grid-container">
@@ -24,7 +26,14 @@ function App() {
                 <span className ="badge">{cartItems.length}</span>
               )}
               </Link>
-            <Link to ="/Signin">Sign In</Link>
+              {
+                userInfo ? (
+                  <Link to = "#"> {userInfo.name}</Link>
+                ) : (
+                  <Link to ="/Signin">Sign In</Link>
+                )
+              }
+            
         </div>
     </header>
     <main>
