@@ -4,6 +4,8 @@ import {BrowserRouter, Link, Route} from 'react-router-dom';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import SigninScreen from './screens/SigninScreen';
+
 function App() {
   //add a badge to show number of items in the cart, for that get access to cart items from redux
   const cart = useSelector(state=> state.cart);
@@ -28,6 +30,7 @@ function App() {
     <main>
       <Route path = "/cart/:id?" component ={CartScreen}></Route>
     <Route path = "/product/:id" component = {ProductScreen} exact></Route>
+    <Route path = "/signin" component ={SigninScreen}></Route>
       <Route path = "/" component = {HomeScreen} exact></Route>
     </main>
     <footer className="row center" >All Rights Reserve</footer>
