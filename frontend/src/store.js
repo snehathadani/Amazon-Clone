@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { cartReducer } from "./reducers/cartReducers";
 
 import { productDetailsReducer, productListReducer } from "./reducers/productListReducer";
-import { userSigninReducer } from "./reducers/userReducer";
+import { userRegisterReducer, userSigninReducer } from "./reducers/userReducer";
 //for the store first define an intial state
 const initialState = {
     userSignin: {
@@ -22,6 +22,7 @@ const reducer = combineReducers({
     productDetails:productDetailsReducer,
     cart:cartReducer,
     userSignin: userSigninReducer,
+    userRegister: userRegisterReducer,
 })
 //to connect to redux store first update the compose function
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
