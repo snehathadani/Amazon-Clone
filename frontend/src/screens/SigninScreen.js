@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { signin } from '../actions/userActions';
 
 
-export default function SigninScreen(){
+export default function SigninScreen(props){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-
+    const redirect = props.location.search ? props.location.search.split('=')[1]
+                        : '/'; //props.location.search props are parameters of signin
+    //Now get the userInfo from the redux store
+    const userSignin = useSelector((state)=> state.userSignin)
+    const {userInfo} = userSignin;
     const submitHandler = (e)=> {
         e.preventDefault();
         dispatch(signin(email,password))
     }
+    useEffect(()=> {
+        if(userInfo) { //if userInfo exists then the logging was successful
+            props.history.push(redirect);
+        }
+    }, [userInfo, props.history, redirect]);//whenever the value of userInfo has changed
     
     return(
         <div>
