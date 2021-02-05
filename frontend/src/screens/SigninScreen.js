@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { signin } from '../actions/userActions';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 
 export default function SigninScreen(props){
@@ -12,7 +14,8 @@ export default function SigninScreen(props){
                         : '/'; //props.location.search props are parameters of signin
     //Now get the userInfo from the redux store
     const userSignin = useSelector((state)=> state.userSignin)
-    const {userInfo} = userSignin;
+    const {userInfo, loading, error} = userSignin;
+    
     const submitHandler = (e)=> {
         e.preventDefault();
         dispatch(signin(email,password))
@@ -29,6 +32,8 @@ export default function SigninScreen(props){
                 <div>
                     <h1>Sign In</h1>
                 </div>
+                {loading && <LoadingBox></LoadingBox>}
+                {error && <MessageBox variant="danger">{error}</MessageBox>}
                 <div>
                     <label htmlFor="email">Email Address</label>
                     <input type = "email" id ="email" placeholder="Enter Email" required
