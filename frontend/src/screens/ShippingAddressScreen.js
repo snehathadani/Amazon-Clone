@@ -10,11 +10,14 @@ export default function ShippingAddressScreen(props) {
     if(!userInfo) {
         props.history.push('/signin');
     }
-    const [fullName, setFullName] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [postalCode, setPostalCode] = useState('')
-    const [country, setCountry] = useState('')
+    //similarly get columns for address prefilled by the previously enteretd address so user doesnt have to retype everything
+    const cart = useSelector(state=> state.cart);
+    const {shippingAddress} = cart;
+    const [fullName, setFullName] = useState(shippingAddress.fullName)
+    const [address, setAddress] = useState(shippingAddress.address)
+    const [city, setCity] = useState(shippingAddress.city)
+    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
+    const [country, setCountry] = useState(shippingAddress.country)
     const dispatch = useDispatch();
 //bcoz you are passing inside cartAction as a single object "data" you need to wrap it arounf curlu braces {}
     const submitHandler=(e)=>{
