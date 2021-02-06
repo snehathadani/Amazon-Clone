@@ -1,4 +1,4 @@
-import { USER_SIGNIN_FAIL, USER_SIGNOUT, USER_SIGNIN_SUCCESS, USER_SIGNIN_REQUEST, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL } from "../constants/userConstants";
+import { USER_SIGNIN_FAIL, USER_SIGNOUT, USER_SIGNIN_SUCCESS, USER_SIGNIN_REQUEST, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_CLEAR } from "../constants/userConstants";
 
 export const userSigninReducer = (state={}, action)=> {
     switch(action.type){
@@ -9,8 +9,8 @@ export const userSigninReducer = (state={}, action)=> {
         case USER_SIGNIN_FAIL:
             return {loading:false, error: action.payload};
         case USER_SIGNOUT:
-            return {};// by setting an empty object iserInfo from localStorage should be removed
-            default:
+            return {};// by setting an empty object userInfo from localStorage should be removed
+        default:
                 return state;
     }
 }
@@ -24,7 +24,9 @@ export const userRegisterReducer = (state={}, action)=> {
             return {loading:false, userInfo: action.payload};
         case USER_REGISTER_FAIL:
             return {loading:false, error: action.payload};
-            default:
+        case USER_REGISTER_CLEAR:
+            return {};
+        default:
                 return state;
     }
 }

@@ -11,7 +11,7 @@ export const generateToken = (user)=> {//// first parameter is the object we are
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-    }, process.env.JWT_SECRET, //second parameter set value to JWT secret
+    }, process.env.JWT_SECRET, //|| 'somethingsecret', //second parameter set value to JWT secret
     {
         expiresIn: '30d',// last parameter is options
     }
