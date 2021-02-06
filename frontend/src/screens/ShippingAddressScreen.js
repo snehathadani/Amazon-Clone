@@ -1,9 +1,15 @@
 import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingAddress } from '../actions/cartActions'
 import CheckoutSteps from '../components/CheckoutSteps'
 
 export default function ShippingAddressScreen(props) {
+    //Only sign in users should see the shipping screen so extract the userInfo from state to validate this
+    const userSignin = useSelector((state)=> state.userSignin);
+    const {userInfo} = userSignin;
+    if(!userInfo) {
+        props.history.push('/signin');
+    }
     const [fullName, setFullName] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
