@@ -17,7 +17,9 @@ export default function RegisterScreen(props){
                         : '/'; //props.location.search props are parameters of signin
     //Now get the userInfo from the redux store
     const userRegister = useSelector((state)=> state.userRegister)
-    const {userInfo, loading, error} = userRegister;
+    const userSignin = useSelector(state => state.userSignin)
+    const {loading, error} = userRegister;
+    const {userInfo} = userSignin
     
     const submitHandler = (e)=> {
         e.preventDefault();
