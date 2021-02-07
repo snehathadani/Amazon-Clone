@@ -5,6 +5,7 @@ import { signout } from './actions/userActions';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import ProductScreen from './screens/ProductScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import shippingAddressScreen from './screens/ShippingAddressScreen';
@@ -58,6 +59,7 @@ const dispatch = useDispatch();
     <Route path = "/register" component ={RegisterScreen}></Route>
     <Route path ="/shipping"  component={shippingAddressScreen}></Route>
     <Route path ="/payment"  component={PaymentMethodScreen}></Route>
+    <Route path ="/placeorder"  component={PlaceOrderScreen}></Route>
     <Route path = "/" component = {HomeScreen} exact></Route>
     </main>
     <footer className="row center" >All Rights Reserve</footer>
