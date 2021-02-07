@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps'
 //create shipping payment and order details section
@@ -17,7 +17,13 @@ export default function PlaceOrderScreen(props) {
     cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-    const placeOrderHandler = ()=>{}
+    const dispatch = useDispatch();
+
+    const placeOrderHandler = ()=>{
+        //in the backend we have named and expecting orserItems inside orderRouter
+        //so replace cartItems with orderItems
+        dispatch(createOrder({...cart, orderItems:cart.cartItems}))
+    }
 
     return (
         <div>
