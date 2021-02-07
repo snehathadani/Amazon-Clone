@@ -4,6 +4,7 @@ import {BrowserRouter, Link, Route} from 'react-router-dom';
 import { signout } from './actions/userActions';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
+import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import ProductScreen from './screens/ProductScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import shippingAddressScreen from './screens/ShippingAddressScreen';
@@ -56,7 +57,8 @@ const dispatch = useDispatch();
     <Route path = "/signin" component ={SigninScreen}></Route>
     <Route path = "/register" component ={RegisterScreen}></Route>
     <Route path ="/shipping"  component={shippingAddressScreen}></Route>
-      <Route path = "/" component = {HomeScreen} exact></Route>
+    <Route path ="/payment"  component={PaymentMethodScreen}></Route>
+    <Route path = "/" component = {HomeScreen} exact></Route>
     </main>
     <footer className="row center" >All Rights Reserve</footer>
 </div>
