@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 
 const orderSchema = new mongoose.Schema({
+    //in the frontend cartItems represent orderItems
     orderItems: [{
         name: {type:String, required: true},
         qty: {type:Number, required: true},
