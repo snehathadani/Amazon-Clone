@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps'
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 //create shipping payment and order details section
 export default function PlaceOrderScreen(props) {
     const cart = useSelector(state=> state.cart);//import cart
@@ -10,6 +13,8 @@ export default function PlaceOrderScreen(props) {
     if(!cart.paymentMethod){
         props.history.push('/payment');
     }
+    const orderCreate = useSelector(state=> state.orderCreate);
+    const {loading, success, error, order} = orderCreate;
     //add tax and total price
     const toPrice = (num)=> Number(num.toFixed(2));//5.123 => "5.12" => 5.12
     //convert to toFixed numbers
@@ -25,6 +30,14 @@ export default function PlaceOrderScreen(props) {
         //so replace cartItems with orderItems
         dispatch(createOrder({...cart, orderItems:cart.cartItems}))
     }
+
+    useEffect(()=> {
+        if(success){
+            //if success then redirect the user to  order number and then reset via dispatch action
+            props.history.push(`/order/${order._id}`);
+            dispatch({type:ORDER_CREATE_RESET});
+        };
+    }, [dispatch, order, props.history, success]);//order and not order._id as it wont work if order is null
 
     return (
         <div>
@@ -119,6 +132,8 @@ export default function PlaceOrderScreen(props) {
                                          Place Order
                                      </button>
                                 </li>
+                                {loading && <LoadingBox></LoadingBox>}
+                                {error && <MessageBox variant ="danger">{error}</MessageBox>}
                         </ul> 
                     </div>
                 </div>
