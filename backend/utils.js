@@ -35,7 +35,7 @@ export const isAuth=(req,res, next)=> {
              (err, decode)=> {
             //first check the error, if error then token is invalid
             if(err) {
-                req.status(401).send({message:'Invalid Toekn'});
+                res.status(401).send({message:'Invalid Toekn'});
             } else {
                 req.user = decode;//jwt.verify decodes and decode contains the info about the user
                 /**decode will have   _id: user._id,
@@ -49,6 +49,6 @@ export const isAuth=(req,res, next)=> {
         } 
         );
     } else {
-        req.status(401).send({message:'No Token'});
+        res.status(401).send({message:'No Token'});
     }
 }
