@@ -83,25 +83,25 @@ export default function PlaceOrderScreen(props) {
                                <li>
                                  <div className ="row">
                                      <div>Items</div>
-                                     <div>${cart.itemsPrice}</div>
+                                     <div>${cart.itemsPrice.toFixed(2)}</div>
                                      </div>  
                                 </li>
                                 <li>
                                  <div className ="row">
                                      <div>Shipping</div>
-                                     <div>${cart.shippingPrice}</div>
+                                     <div>${cart.shippingPrice.toFixed(2)}</div>
                                      </div>  
                                 </li>
                                 <li>
                                  <div className ="row">
                                      <div>Tax</div>
-                                     <div>${cart.taxPrice}</div>
+                                     <div>${cart.taxPrice.toFixed(2)}</div>
                                      </div>  
                                 </li>
                                 <li>
                                  <div className ="row">
                                      <div><strong>Order Total</strong></div>
-                                     <div><strong>${cart.totalPrice}</strong></div>
+                                     <div><strong>${cart.totalPrice.toFixed(2)}</strong></div>
                                      </div>  
                                 </li>
                                 <li>
