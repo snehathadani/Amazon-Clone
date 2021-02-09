@@ -30,5 +30,14 @@ orderRouter.post('/',isAuth, expressAsyncHandler(async(req,res)=>{
         .send({message: 'New Order Created', order: createdOrder});
     }
 }))
-
+//create get orders screen
+//need a middleware  isAuth as user needs to be authenticated to see orders
+orderRouter.get('/:id', isAuth, expressAsyncHandler(async(req,res) => {
+    const order = await Order.findById(req.params.id);// this is the id that comes from /:id
+    if(order){
+        res.send(order)
+    } else {
+        res.status(404).send({message:'Order not Found'});
+    }
+}));
 export default orderRouter;

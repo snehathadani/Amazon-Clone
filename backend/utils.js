@@ -20,12 +20,15 @@ export const generateToken = (user)=> {//// first parameter is the object we are
 
 
 /**npm install dotenv reminder */
-export const isAuth=(req,res, next)=> {
+export const isAuth=(req,res, next)=> { 
+    console.log(req.headers)
     //get the headers filled from request
+    
     const authorization=req.headers.authorization;
     if(authorization){
-        //only get the token part hat starts from the 7th index
+        //only get the token part that starts from the 7th index skips the Bearer and space
         const token = authorization.slice(7, authorization.length);
+        console.log(token)
         //jwt.verify to dcrypt the token
         //2nd parameter is JWT secret
         //jwt.verify third parameter is decode that contains the data
@@ -37,7 +40,9 @@ export const isAuth=(req,res, next)=> {
             if(err) {
                 res.status(401).send({message:'Invalid Toekn'});
             } else {
-                req.user = decode;//jwt.verify decodes and decode contains the info about the user
+                req.user = decode;
+                console.log(decode)
+                //jwt.verify decodes and decode contains the info about the user
                 /**decode will have   _id: user._id,
         name: user.name,
         email: user.email,

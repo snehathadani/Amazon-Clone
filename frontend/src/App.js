@@ -4,6 +4,7 @@ import {BrowserRouter, Link, Route} from 'react-router-dom';
 import { signout } from './actions/userActions';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
+import OrderScreen from './screens/OrderScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import ProductScreen from './screens/ProductScreen';
@@ -60,6 +61,7 @@ const dispatch = useDispatch();
     <Route path ="/shipping"  component={shippingAddressScreen}></Route>
     <Route path ="/payment"  component={PaymentMethodScreen}></Route>
     <Route path ="/placeorder"  component={PlaceOrderScreen}></Route>
+    <Route path ="/order/:id"  component={OrderScreen}></Route>
     <Route path = "/" component = {HomeScreen} exact></Route>
     </main>
     <footer className="row center" >All Rights Reserve</footer>
